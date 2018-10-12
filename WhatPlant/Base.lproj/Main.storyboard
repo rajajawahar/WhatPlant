@@ -16,7 +16,18 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rRB-gH-CEZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="583"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rRB-gH-CEZ" secondAttribute="bottom" constant="20" id="7jz-BX-EX0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rRB-gH-CEZ" secondAttribute="trailing" id="Blz-JM-c8l"/>
+                            <constraint firstItem="rRB-gH-CEZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JcA-y7-Qwu"/>
+                            <constraint firstItem="rRB-gH-CEZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ftt-ix-7dQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="fcc-96-i3d">
