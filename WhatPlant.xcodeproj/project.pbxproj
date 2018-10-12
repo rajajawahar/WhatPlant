@@ -12,6 +12,7 @@
 		AC746F0F217071A8001B2B8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC746F0D217071A8001B2B8F /* Main.storyboard */; };
 		AC746F11217071A9001B2B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC746F10217071A9001B2B8F /* Assets.xcassets */; };
 		AC746F14217071A9001B2B8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC746F12217071A9001B2B8F /* LaunchScreen.storyboard */; };
+		AC746F1C21707293001B2B8F /* PlantsImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AC746F1B21707293001B2B8F /* PlantsImageClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		AC746F10217071A9001B2B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC746F13217071A9001B2B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC746F15217071A9001B2B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC746F1B21707293001B2B8F /* PlantsImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PlantsImageClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		AC746F08217071A8001B2B8F /* WhatPlant */ = {
 			isa = PBXGroup;
 			children = (
+				AC746F1B21707293001B2B8F /* PlantsImageClassifier.mlmodel */,
 				AC746F09217071A8001B2B8F /* AppDelegate.swift */,
 				AC746F0B217071A8001B2B8F /* ViewController.swift */,
 				AC746F0D217071A8001B2B8F /* Main.storyboard */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC746F0C217071A8001B2B8F /* ViewController.swift in Sources */,
+				AC746F1C21707293001B2B8F /* PlantsImageClassifier.mlmodel in Sources */,
 				AC746F0A217071A8001B2B8F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
