@@ -8,15 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    let imagePicker = UIImagePickerController()
 
+    @IBOutlet weak var browsedImageView: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .camera
     }
 
     @IBAction func browseCamera(_ sender: UIBarButtonItem) {
-        print("Camera Clicked")
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let userpickedImage = info[UIImagePickerController.InfoKey.originalImage]
+        browsedImageView.image = userpickedImage as? UIImage
+        imagePicker.dismiss(animated: true, completion: nil)
+        
     }
     
 }
