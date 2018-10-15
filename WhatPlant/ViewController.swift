@@ -50,7 +50,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         }
         let request = VNCoreMLRequest(model: coreMLModel) { (request,error) in
             let classification = request.results?.first as? VNClassificationObservation
-            self.navigationItem.title = classification?.identifier
+            self.navigationItem.title = classification?.identifier.capitalized
             
         }
         let requestOptions:[VNImageOption : Any] = [:]
