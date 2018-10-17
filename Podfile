@@ -7,5 +7,7 @@ target 'WhatPlant' do
 
   # Pods for WhatPlant
       pod 'Alamofire', '~> 4.7'
-
+      pod 'SwiftyJSON'
+      pod 'SDWebImage'
+      pod 'ColorThiefSwift'
 end
