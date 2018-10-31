@@ -9,14 +9,15 @@
 import UIKit
 import Vision
 import Alamofire
+import SwiftyJSON
 
 
 class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
     
-    let wikipediaURl = "https://en.wikipedia.org/w/api.php"
-
+    @IBOutlet weak var imageInfo: UILabel!
+    
     
     @IBOutlet weak var browsedImageView: UIImageView!
     
@@ -51,7 +52,9 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         }
         let request = VNCoreMLRequest(model: coreMLModel) { (request,error) in
             let classification = request.results?.first as? VNClassificationObservation
-            self.navigationItem.title = classification?.identifier.capitalized
+            let plantname = classification?.identifier.capitalized
+            self.navigationItem.title = plantname
+            self.requestInfo(plantName: plantname!)
             
         }
         let requestOptions:[VNImageOption : Any] = [:]
@@ -63,62 +66,21 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         }
     }
     
-    func requestInfo(flowerName: String) {
-        let parameters : [String:String] = ["format" : "json", "action" : "query", "prop" : "extracts|pageimages", "exintro" : "", "explaintext" : "", "titles" : flowerName, "redirects" : "1", "pithumbsize" : "500", "indexpageids" : ""]
-        
-        
-        // https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts|pageimages&exintro=&explaintext=&titles=barberton%20daisy&redirects=1&pithumbsize=500&indexpageids
-        
+    func requestInfo(plantName: String) {
+        let wikipediaURl = "https://en.wikipedia.org/w/api.php"
+        let parameters : [String:String] = ["format" : "json", "action" : "query", "prop" : "extracts|pageimages", "exintro" : "", "explaintext" : "", "titles" : plantName, "redirects" : "1", "pithumbsize" : "500", "indexpageids" : ""]
         Alamofire.request(wikipediaURl, method: .get, parameters: parameters).responseJSON { (response) in
             if response.result.isSuccess {
-                //                print(response.request)
-                //
-                //                print("Success! Got the flower data")
-                let flowerJSON : JSON = JSON(response.result.value!)
                 
-                let pageid = flowerJSON["query"]["pageids"][0].stringValue
+                                print("Success! Got the Plant data")
+                let plantJSON : JSON = JSON(response.result.value!)
                 
-                let flowerDescription = flowerJSON["query"]["pages"][pageid]["extract"].stringValue
-                let flowerImageURL = flowerJSON["query"]["pages"][pageid]["thumbnail"]["source"].stringValue
-                
-                //                print("pageid \(pageid)")
-                //                print("flower Descript \(flowerDescription)")
-                //                print(flowerJSON)
-                //
-                self.infoLabel.text = flowerDescription
-                
-                
-                
-                
-                self.imageView.sd_setImage(with: URL(string: flowerImageURL), completed: { (image, error,  cache, url) in
-                    
-                    if let currentImage = self.imageView.image {
-                        
-                        guard let dominantColor = ColorThief.getColor(from: currentImage) else {
-                            fatalError("Can't get dominant color")
-                        }
-                        
-                        
-                        DispatchQueue.main.async {
-                            self.navigationController?.navigationBar.isTranslucent = true
-                            self.navigationController?.navigationBar.barTintColor = dominantColor.makeUIColor()
-                            
-                            
-                        }
-                    } else {
-                        self.imageView.image = self.pickedImage
-                        self.infoLabel.text = "Could not get information on flower from Wikipedia."
-                    }
-                    
-                })
-                
+                let pageid = plantJSON["query"]["pageids"][0].stringValue
+                let plantDescription = plantJSON["query"]["pages"][pageid]["extract"].stringValue
+                self.imageInfo.text = plantDescription
             }
             else {
                 print("Error \(String(describing: response.result.error))")
-                self.infoLabel.text = "Connection Issues"
-                
-                
-                
             }
         }
     }
